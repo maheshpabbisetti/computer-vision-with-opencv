@@ -1,0 +1,22 @@
+import cv2
+import numpy as np
+
+# Read the image
+img = cv2.imread("C:/Users/maheshpabbisetti/OneDrive/Pictures/openCV/gray scale conversion image.png")
+
+# Define the initial and new position of the image
+initial_pos = (50, 50) # (x,y) coordinates
+new_pos = (200, 200) # (x,y) coordinates
+
+# Define the translation matrix
+tx = new_pos[0] - initial_pos[0]
+ty = new_pos[1] - initial_pos[1]
+M = np.float32([[1, 0, tx], [0, 1, ty]])
+
+# Apply the translation to the image
+translated_img = cv2.warpAffine(img, M, (img.shape[1], img.shape[0]))
+
+# Display the original and translated images side by side
+cv2.imshow("Original Image", img)
+cv2.imshow("Translated Image", translated_img)
+cv2.waitKey(0)
